@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     ;; pdf-tools
      python
      sql 
      ;; ------------------------------------------------heller----------------
@@ -26,10 +27,11 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      auto-completion
-     better-defaults
+     (better-defaults :variables
+                      better-defaults-move-to-end-of-code-first t)
      emacs-lisp
-     ;; git
-     ;; markdown
+     git
+     markdown
      org
      ;; (shell :variables
      ;;        shell-default-height 30
@@ -44,12 +46,14 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      lua
+     heller
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(youdao-dictionary)
+   ;; dotspacemacs-additional-packages '(youdao-dictionary)
+   dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
@@ -251,7 +255,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
         '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "http://elpa.zilongshanren.com/org/")
           ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
-  (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
+  ;; (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
   (setq youdao-dictionary-search-history-file "~/.emacs.d/.youdao")
   (setq youdao-dictionary-use-chinese-word-segmentation t)
   )
