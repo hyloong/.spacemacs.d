@@ -1,2 +1,2 @@
-(global-linum-mode t)
+;; (global-linum-mode t)
 
