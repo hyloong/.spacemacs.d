@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     windows-scripts
      html
      php
      ;; pdf-tools
@@ -48,6 +49,7 @@ values."
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      lua
+     semantic
      heller
      )
    ;; List of additional packages that will be installed without being
@@ -57,7 +59,7 @@ values."
    ;; dotspacemacs-additional-packages '(youdao-dictionary)
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(vi-tilde-fringe)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'. (default t)
@@ -260,6 +262,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;; (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
   (setq youdao-dictionary-search-history-file "~/.emacs.d/.youdao")
   (setq youdao-dictionary-use-chinese-word-segmentation t)
+  (add-to-list 'load-path "~/.emacs.d/private/local/php-extras")
+  (require 'php-extras)
+  ;; (eval-after-load 'php-mode (require 'php-extras))
   )
 
 (defun dotspacemacs/user-config ()
@@ -287,14 +292,15 @@ you should place your code here."
   ;; Bind clang-format-buffer to tab on the c++-mode only:
   (add-hook 'c++-mode-hook 'clang-format-bindings)
   (defun clang-format-bindings ()
-    (define-key c++-mode-map [tab] 'clang-format-buffer)) 
+    (define-key c++-mode-map [tab] 'clang-format-buffer))
+  (setq flycheck-clang-include-path '("/usr/lib/include"))
   (global-company-mode)
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
-  (abbrev-mode 1)
-  (define-abbrev-table 'global-abbrev-table '(
-                                              ("ifm" "io:format(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []]),")
-                                              ))
+  (setq abbrev-mode 1)
+  ;; (define-abbrev-table 'global-abbrev-table '(
+  ;;                                             ("ifm" "io:format(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []]),")
+  ;;                                             ))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -306,7 +312,7 @@ you should place your code here."
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data pcache goto-chg undo-tree diminish yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic org-projectile org-present org org-pomodoro alert log4e gntp org-download htmlize gnuplot sql-indent uuidgen toc-org org-plus-contrib org-bullets mwim link-hint hide-comnt eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump column-enforce-mode lua-mode pangu-spacing find-by-pinyin-dired chinese-pyim chinese-pyim-basedict ace-pinyin pinyinlib ace-jump-mode youdao-dictionary names chinese-word-at-point disaster company-c-headers cmake-mode clang-format smeargle phpunit f phpcbf php-auto-yasnippets orgit magit-gitflow helm-gtags helm-gitignore request helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger ggtags flycheck-pos-tip flycheck evil-magit magit magit-popup git-commit with-editor erlang drupal-mode php-mode company-statistics company-quickhelp pos-tip company auto-yasnippet yasnippet ac-ispell auto-complete paradox hydra adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe spaceline s powerline smooth-scrolling restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme))))
+    (powershell stickyfunc-enhance srefactor web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data pcache goto-chg undo-tree diminish yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic org-projectile org-present org org-pomodoro alert log4e gntp org-download htmlize gnuplot sql-indent uuidgen toc-org org-plus-contrib org-bullets mwim link-hint hide-comnt eyebrowse evil-visual-mark-mode evil-unimpaired evil-ediff dumb-jump column-enforce-mode lua-mode pangu-spacing find-by-pinyin-dired chinese-pyim chinese-pyim-basedict ace-pinyin pinyinlib ace-jump-mode youdao-dictionary names chinese-word-at-point disaster company-c-headers cmake-mode clang-format smeargle phpunit f phpcbf php-auto-yasnippets orgit magit-gitflow helm-gtags helm-gitignore request helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger ggtags flycheck-pos-tip flycheck evil-magit magit magit-popup git-commit with-editor erlang drupal-mode php-mode company-statistics company-quickhelp pos-tip company auto-yasnippet yasnippet ac-ispell auto-complete paradox hydra adaptive-wrap ws-butler window-numbering volatile-highlights vi-tilde-fringe spaceline s powerline smooth-scrolling restart-emacs rainbow-delimiters popwin persp-mode pcre2el spinner page-break-lines open-junk-file neotree move-text macrostep lorem-ipsum linum-relative leuven-theme info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make projectile pkg-info epl helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery expand-region exec-path-from-shell evil-visualstar evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-args evil-anzu anzu eval-sexp-fu highlight elisp-slime-nav define-word clean-aindent-mode buffer-move bracketed-paste auto-highlight-symbol auto-compile packed dash aggressive-indent ace-window ace-link ace-jump-helm-line helm avy helm-core popup async quelpa package-build use-package which-key bind-key bind-map evil spacemacs-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

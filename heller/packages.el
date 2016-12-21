@@ -29,38 +29,28 @@
 
 ;;; Code:
 
+;; pre-init-xxx -> init -> post-init 执行顺序
+;; 想要安装一个包，先检查是否已经安装了，如果安装了用post-init来设置自己想要的设置。
+
 (defconst heller-packages
-  '(youdao-dictionary)
-  "The list of Lisp packages required by the heller layer.
+  '(youdao-dictionary
+    ;; company
+    ;; erlang
+    ;; ggtags
+    ;; helm-gtags
+    ;; flycheck
+    ;; (xxx :location (recipe :fetcher github :repo "xxxx")) ;; 测试安装
+    )
+  )
 
-Each entry is either:
+;; (defun heller/init-xxx()
+;;   (use-package xxx
+;;     init:
+;;   )
 
-1. A symbol, which is interpreted as a package to be installed, or
-
-2. A list of the form (PACKAGE KEYS...), where PACKAGE is the
-    name of the package to be installed or loaded, and KEYS are
-    any number of keyword-value-pairs.
-
-    The following keys are accepted:
-
-    - :excluded (t or nil): Prevent the package from being loaded
-      if value is non-nil
-
-    - :location: Specify a custom installation location.
-      The following values are legal:
-
-      - The symbol `elpa' (default) means PACKAGE will be
-        installed using the Emacs package manager.
-
-      - The symbol `local' directs Spacemacs to load the file at
-        `./local/PACKAGE/PACKAGE.el'
-
-      - A list beginning with the symbol `recipe' is a melpa
-        recipe.  See: https://github.com/milkypostman/melpa#recipe-format")
-
-
+;; youdao
 (defun heller/init-youdao-dictionary()
-  ;; M-Enter 进入打开宏看内部代码
+  ;; M-Enter d m 进入打开宏看内部代码
   (use-package youdao-dictionary
     :defer t
     :init (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
@@ -68,21 +58,61 @@ Each entry is either:
     )
   )
 
+;; company
+(defun heller/post-init-company()
+  (setq company-minimum-prefix-length 1)
+  (add-hook 'erlang-mode-hook 'company-mode)
+  )
 
-(defun occur-dwim ()
-  "Call `occur' with a sane default."
-  (interactive)
-  (push (if (region-active-p)
-            (buffer-substring-no-properties
-             (region-beginning)
-             (region-end))
-          (let ((sym (thing-at-point 'symbol)))
-            (when (stringp sym)
-              (regexp-quote sym))))
-        regexp-history)
-  ;; (deactivate-mark)
-  (call-interactively 'occur))
-;;(evilified-state-evilify occur-mode occur-mode-map
-;;  "RET" 'occur-mode-goto-occurrence))
+(defun erlang/init-erlang ()
+  (use-package erlang
+    :defer t
+    :init
+    (progn
+      ;; explicitly run prog-mode hooks since erlang mode does is not
+      ;; derived from prog-mode major-mode
+      (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
+      (setq erlang-root-dir "/usr/local/lib/erlang/erts-5.10.4")
+      (add-to-list 'exec-path "/usr/local/lib/erlang/erts-5.10.4/bin")
+      (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-5.10.4/man")
+      (add-hook 'erlang-mode-hook
+                (lambda ()
+                  (setq mode-name "Erlang")
+                  (setq inferior-erlang-machine-options '("-name" "heller@192.168.5.29" "-setcookie" "gs"))
+                  ))
+      (setq erlang-compile-extra-opts '(debug_info
+                                        (i . \"../../../include\") (i . \"../../include\") (i . \"../include\"))))
+    :config
+    (require 'erlang-start))
+  )
+
+;; flycheck
+(defun erlang/post-init-flycheck ()
+  (spacemacs/add-flycheck-hook 'erlang-mode)
+  (setq flycheck-erlang-include-path (list
+                                      "inc"
+                                      "../inc"
+                                      "../../inc"
+                                      "../../../inc"
+                                      "include"
+                                      "../include"
+                                      "../../include"
+                                      "../../../include"
+                                      ))
+  (setq flycheck-erlang-library-path (list
+                                      "../ebin"
+                                      "../../ebin"
+                                      "../../../ebin"
+                                      ))
+  )
+
+;; gtags
+(defun erlang/post-init-ggtags ()
+  (add-hook 'erlang-mode-local-vars-hook #'spacemacs/ggtags-mode-enable))
+
+;; helm gtags
+(defun erlang/post-init-helm-gtags ()
+  (spacemacs/helm-gtags-define-keys-for-mode 'erlang-mode))
+
 
 ;;; packages.el ends here
