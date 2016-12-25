@@ -18,16 +18,6 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     windows-scripts
-     html
-     php
-     python
-     sql
-     ;; ------------------------------------------------heller----------------
-     ;; Example of useful layers you may want to use right away.
-     ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
-     ;; <M-m f e R> (Emacs style) to install them.
-     ;; ----------------------------------------------------------------
      auto-completion
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
@@ -41,13 +31,18 @@ values."
      ;; spell-checking
      syntax-checking
      ;; version-control
-     erlang
      gtags
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
+     html
+     php
+     python
+     sql
      lua
+     erlang
      semantic
+     windows-scripts
      heller
      )
    ;; List of additional packages that will be installed without being
@@ -250,18 +245,10 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-  ;; (add-to-list 'load-path "~/.emacs.d/private/local/")
-  ;; (require 'init-base)
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "http://elpa.zilongshanren.com/org/")
           ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
-  ;; (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
-  ;; (setq youdao-dictionary-search-history-file "~/.emacs.d/.youdao")
-  ;; (setq youdao-dictionary-use-chinese-word-segmentation t)
-  ;; (add-to-list 'load-path "~/.emacs.d/private/local/php-extras")
-  ;; (require 'php-extras)
-  ;; (eval-after-load 'php-mode (require 'php-extras))
   )
 
 (defun dotspacemacs/user-config ()
@@ -294,10 +281,7 @@ you should place your code here."
   (global-company-mode)
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
-  (setq abbrev-mode 1)
-  ;; (define-abbrev-table 'global-abbrev-table '(
-  ;;                                             ("ifm" "io:format(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []]),")
-  ;;                                             ))
+  (setq-default abbrev-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
