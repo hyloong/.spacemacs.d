@@ -21,9 +21,8 @@ values."
      windows-scripts
      html
      php
-     ;; pdf-tools
      python
-     sql 
+     sql
      ;; ------------------------------------------------heller----------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -44,7 +43,6 @@ values."
      ;; version-control
      erlang
      gtags
-     php
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
@@ -56,7 +54,6 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   ;; dotspacemacs-additional-packages '(youdao-dictionary)
    dotspacemacs-additional-packages '()
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '(vi-tilde-fringe)
@@ -253,17 +250,17 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
-  (add-to-list 'load-path "~/.emacs.d/private/local/")
-  (require 'init-base)
+  ;; (add-to-list 'load-path "~/.emacs.d/private/local/")
+  ;; (require 'init-base)
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "http://elpa.zilongshanren.com/org/")
           ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
   ;; (global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point+)
-  (setq youdao-dictionary-search-history-file "~/.emacs.d/.youdao")
-  (setq youdao-dictionary-use-chinese-word-segmentation t)
-  (add-to-list 'load-path "~/.emacs.d/private/local/php-extras")
-  (require 'php-extras)
+  ;; (setq youdao-dictionary-search-history-file "~/.emacs.d/.youdao")
+  ;; (setq youdao-dictionary-use-chinese-word-segmentation t)
+  ;; (add-to-list 'load-path "~/.emacs.d/private/local/php-extras")
+  ;; (require 'php-extras)
   ;; (eval-after-load 'php-mode (require 'php-extras))
   )
 
