@@ -58,10 +58,38 @@
     )
   )
 
-;; company
 ;; (defun heller/post-init-company()
 ;;   (setq company-minimum-prefix-length 1)
 ;;   (add-hook 'erlang-mode-hook 'company-mode)
+;;   )
+
+;; (defun erlang/init-erlang ()
+;;   (use-package erlang
+;;     :defer t
+;;     :init
+;;     (progn
+;;       ;; explicitly run prog-mode hooks since erlang mode does is not
+;;       ;; derived from prog-mode major-mode
+;;       (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
+;;       (if (string= system-type "darwin")
+;;           (progn
+;;             (setq erlang-root-dir "/usr/local/lib/erlang/erts-5.10.4")
+;;             (add-to-list 'exec-path "/usr/local/lib/erlang/erts-5.10.4/bin")
+;;             (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-5.10.4/man")
+;;             )
+;;         (setq erlang-root-dir "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2")
+;;         (add-to-list 'exec-path "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2/bin")
+;;         (setq erlang-man-root-dir "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2/man")
+;;         )
+;;       (add-hook 'erlang-mode-hook
+;;                 (lambda ()
+;;                   (setq mode-name "Erlang")
+;;                   (setq inferior-erlang-machine-options '("-name" "heller@192.168.5.29" "-setcookie" "gs"))
+;;                   ))
+;;       (setq erlang-compile-extra-opts '(debug_info
+;;                                         (i . \"../../../include\") (i . \"../../include\") (i . \"../include\"))))
+;;     :config
+;;     (require 'erlang-start))
 ;;   )
 
 ;; (defun erlang/init-erlang ()
