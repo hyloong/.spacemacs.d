@@ -34,6 +34,7 @@
 
 (defconst heller-packages
   '(youdao-dictionary
+    multiple-cursors
     ;; company
     ;; erlang
     ;; ggtags
@@ -55,6 +56,12 @@
     :defer t
     :init (spacemacs/set-leader-keys "oy" 'youdao-dictionary-search-at-point+)
     :init (spacemacs/set-leader-keys "oi" 'youdao-dictionary-search-from-input)
+    )
+  )
+
+(defun heller/init-multiple-cursors ()
+  (use-package multiple-cursors
+    :defer t
     )
   )
 
