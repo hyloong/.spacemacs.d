@@ -3,19 +3,12 @@
 ;; It must be stored in your home directory.
 
 (defun dotspacemacs/layers ()
-  "Configuration Layers declaration.
-You should not put any user code in this function besides modifying the variable
-values."
   (setq-default
-   ;; Base distribution to use. This is a layer contained in the directory
-   ;; `+distribution'. For noum install "@Chinese Support"w available distributions are `spacemacs-base'
-   ;; or `spacemacs'. (default 'spacemacs)
-   dotspacemacs-distribution 'spacemacs
-   ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
+   ;; 标准模式'spacemacs; or 最小模式'spacemacs-base
+   dotspacemacs-distribution 'spacemacs 
+   ;; 其他额外添加的layers的路径，必须要/结尾
    dotspacemacs-configuration-layer-path '()
-   ;; List of configuration layers to load. If it is the symbol `all' instead
-   ;; of a list then all discovered layers will be installed.
+   ;; layers 安装列表:('all):全部安装;
    dotspacemacs-configuration-layers
    '(
      auto-completion
@@ -39,16 +32,11 @@ values."
      windows-scripts
      heller
      )
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
+   ;; 其他额外的包安装，在 `dotspacemacs/user-config' 配置
    dotspacemacs-additional-packages '()
-   ;; A list of packages and/or extensions that will not be install and loaded.
+   ;; 移除无用的包
    dotspacemacs-excluded-packages '(vi-tilde-fringe)
-   ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
-   ;; are declared in a layer which is not a member of
-   ;; the list `dotspacemacs-configuration-layers'. (default t)
+   ;; 删除孤立无用的包
    dotspacemacs-delete-orphan-packages t))
 
 (defun dotspacemacs/init ()
@@ -276,6 +264,7 @@ you should place your code here."
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
   (setq-default abbrev-mode 1)
+  (global-hungry-delete-mode 1)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
