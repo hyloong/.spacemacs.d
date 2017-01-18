@@ -1,4 +1,0 @@
-* Tasks
-** TODO leant some org
-   [2017-01-18 Wed]
-   [[file:~/.spacemacs.d/init.el::(push%20(org-projectile:todo-files)%20org-agenda-files))]]
