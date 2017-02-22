@@ -14,9 +14,7 @@
      ;; emacs
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
-                      auto-completion-enable-snippets-in-popup t
-                      :disabled-for
-                      org markdown)
+                      auto-completion-enable-snippets-in-popup t)
      org
      emacs-lisp
      markdown
@@ -236,13 +234,27 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
   (setq-default abbrev-mode 1)
   (global-hungry-delete-mode 1)
-  (setq spacemacs-show-trailing-whitespace nil) 
-  (setq org-bullets-bullet-list '("◉" "○" "✸" "✿"))
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (push (org-projectile:todo-files) org-agenda-files))
-  (setq org-agenda-files (list  org-directory))
-  (org-agenda)
+
+  (setq spacemacs-show-trailing-whitespace nil)
+  ;; (setq org-bullets-bullet-list '("◉" "○" "✸" "✿"))
+  ;; (with-eval-after-load 'org-agenda
+  ;;   (setq-default org-agenda-files (list org-directory))    
+  ;;   (setq org-agenda-custom-commands
+  ;;         '(
+  ;;           ("w" . "任务安排")
+  ;;           ("tt" "测试任务" tags-todo "aa")
+  ;;           ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
+  ;;           ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
+  ;;           ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
+  ;;           ("b" "Blog" tags-todo "BLOG")
+  ;;           ("p" . "项目安排")
+  ;;           ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"erlang\"")
+  ;;           ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"heller\"")
+  ;;           ("W" "Weekly Review"
+  ;;            ((stuck "") ;; review stuck projects as designated by org-stuck-projects
+  ;;             (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
+  ;;             ))))
+  ;;   )
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
