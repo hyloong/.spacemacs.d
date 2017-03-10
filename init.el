@@ -234,6 +234,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
   (setq-default abbrev-mode 1)
   (global-hungry-delete-mode 1)
+  (setq hs-allow-nesting t)
   (setq spacemacs-show-trailing-whitespace nil)
   ;; (setq org-bullets-bullet-list '("◉" "○" "✸" "✿"))
   ;; (with-eval-after-load 'org-agenda

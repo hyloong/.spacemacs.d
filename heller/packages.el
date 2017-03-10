@@ -89,6 +89,7 @@
       (setq erlang-compile-extra-opts '(debug_info
                                         (i . \"../../../include\") (i . \"../../include\") (i . \"../include\"))))
     :config
+    (add-hook 'erlang-mode-hook 'hs-minor-mode)
     (require 'erlang-start))
   )
 
