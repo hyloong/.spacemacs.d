@@ -14,8 +14,15 @@
     (er/expand-region 1)))
 
 
+
+
 ;; 绑定快捷键
-(global-set-key (kbd "s-d") 'heller/my-mc-mark-next-like-this)
+;; (global-set-key (kbd "s-d") 'heller/my-mc-mark-next-like-this)
+
+(spacemacs/set-leader-keys "sd" 'heller/my-mc-mark-next-like-this)
+(spacemacs/set-leader-keys "oh" 'hs-hide-block)
+(spacemacs/set-leader-keys "os" 'hs-show-block)
+
 
 
 (global-set-key [f5] 'erlang-compile)

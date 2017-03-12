@@ -92,14 +92,14 @@
         (add-to-list 'exec-path "/usr/local/lib/erlang/erts-5.10.4/bin")
         (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-5.10.4/man")
         (add-hook 'erlang-mode-hook (lambda () (setq mode-name "Erlang")
-                    (setq inferior-erlang-machine-options '("-name" "heller@192.168.5.206" "-setcookie" "gs" "-config" "/root/erlang_common/config/common.config")) ))
+                                      (setq inferior-erlang-machine-options '("-name" "heller@192.168.5.206" "-setcookie" "gs" "-config" "/root/erlang_common/config/common.config")) ))
         )
       (setq erlang-compile-extra-opts '(debug_info  (i . \"../../../include\") (i . \"../../include\") (i . \"../include\")))
       :config
+      (add-hook 'erlang-mode-hook 'hs-minor-mode)
       (require 'erlang-start))
     )
   )
-
 ;; flycheck
 (defun erlang/post-init-flycheck ()
   (spacemacs/add-flycheck-hook 'erlang-mode)
