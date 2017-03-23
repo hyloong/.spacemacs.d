@@ -35,6 +35,8 @@
 (defconst heller-packages
   '(youdao-dictionary
     multiple-cursors
+    w3m
+    helm-w3m
     ;; company
     ;; erlang
     ;; ggtags
@@ -65,6 +67,26 @@
     )
   )
 
+
+(defun heller/init-w3m ()
+  (use-package w3m
+    :defer t
+    :init
+    (setq w3m-use-cookies t)
+    (setq w3m-home-page "http://www.baidu.com")
+    (setq w3m-default-display-inline-image t) 
+    (setq w3m-default-toggle-inline-images t)
+    )
+  )
+
+(defun heller/init-helm-w3m ()
+  (use-package helm-w3m
+    :defer t
+    )
+  )
+
+
+
 (defun heller/post-init-company()
   (setq company-minimum-prefix-length 1)
   (add-hook 'erlang-mode-hook 'company-mode)
@@ -75,25 +97,24 @@
     :defer t
     :init
     (progn
-      (if (string= system-type "darwin") ;; ""
-          (progn
-            (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
-            (setq erlang-root-dir "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2")
-            (add-to-list 'exec-path "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2/bin")
-            (setq erlang-man-root-dir "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2/man")
-            (add-hook 'erlang-mode-hook
-                      (lambda () (setq mode-name "Erlang")
-                        (setq inferior-erlang-machine-options '("-sname" "heller" "-setcookie" "gs")) ))
-            )
+      ;; (if (string= system-type "darwin") ;; ""
+      ;;     (progn
+      ;;       (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
+      ;;       (setq erlang-root-dir "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2")
+      ;;       (add-to-list 'exec-path "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2/bin")
+      ;;       (setq erlang-man-root-dir "/usr/local/Cellar/erlang-r19/19.0.2/lib/erlang/erts-8.0.2/man")
+      ;;       (add-hook 'erlang-mode-hook
+      ;;                 (lambda () (setq mode-name "Erlang")
+      ;;                   (setq inferior-erlang-machine-options '("-sname" "heller" "-setcookie" "gs")) ))
+      ;;       )
         ;; explicitly run prog-mode hooks since erlang mode does is not
         ;; derived from prog-mode major-mode
-        (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
-        (setq erlang-root-dir "/usr/local/lib/erlang/erts-5.10.4")
-        (add-to-list 'exec-path "/usr/local/lib/erlang/erts-5.10.4/bin")
-        (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-5.10.4/man")
-        (add-hook 'erlang-mode-hook (lambda () (setq mode-name "Erlang")
-                                      (setq inferior-erlang-machine-options '("-name" "heller@192.168.5.206" "-setcookie" "gs" "-config" "/root/erlang_common/config/common.config")) ))
-        )
+      (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
+      (setq erlang-root-dir "/usr/local/lib/erlang/erts-5.10.4")
+      (add-to-list 'exec-path "/usr/local/lib/erlang/erts-5.10.4/bin")
+      (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-5.10.4/man")
+      (add-hook 'erlang-mode-hook (lambda () (setq mode-name "Erlang")
+                                      (setq inferior-erlang-machine-options '("-nostick" "-name" "heller@192.168.5.206" "-setcookie" "gs" "-config" "/root/erlang_common/config/common.config")) ))
       (setq erlang-compile-extra-opts '(debug_info  (i . \"../../../include\") (i . \"../../include\") (i . \"../include\")))
       :config
       (add-hook 'erlang-mode-hook 'hs-minor-mode)
