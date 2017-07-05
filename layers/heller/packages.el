@@ -110,11 +110,11 @@
         ;; explicitly run prog-mode hooks since erlang mode does is not
         ;; derived from prog-mode major-mode
       (add-hook 'erlang-mode-hook 'spacemacs/run-prog-mode-hooks)
-      (setq erlang-root-dir "/usr/local/lib/erlang/erts-8.3")
-      (add-to-list 'exec-path "/usr/local/lib/erlang/erts-8.3/bin")
-      (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-8.3/man")
+      (setq erlang-root-dir "/usr/local/lib/erlang/erts-5.10.4")
+      (add-to-list 'exec-path "/usr/local/lib/erlang/erts-5.10.4/bin")
+      (setq erlang-man-root-dir "/usr/local/lib/erlang/erts-5.10.4/man")
       (add-hook 'erlang-mode-hook (lambda () (setq mode-name "Erlang")
-                                      (setq inferior-erlang-machine-options '("-nostick" "-name" "heller@192.168.5.65" "-setcookie" "gs" "-config" "/root/gsapp/config/common.config")) ))
+                                      (setq inferior-erlang-machine-options '("-nostick" "-name" "heller@192.168.5.206" "-setcookie" "gs" "-config" "/root/erlang_common/config/common.config")) ))
       (setq erlang-compile-extra-opts '(debug_info  (i . \"../../../include\") (i . \"../../include\") (i . \"../include\")))
       :config
       (add-hook 'erlang-mode-hook 'hs-minor-mode)
