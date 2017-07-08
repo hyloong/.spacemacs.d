@@ -11,6 +11,7 @@
    ;; layers 安装列表:('all):全部安装;
    dotspacemacs-configuration-layers
    '(
+     javascript
      ;; emacs
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
