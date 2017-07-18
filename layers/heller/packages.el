@@ -106,7 +106,7 @@
                                           '("-nostick" "-name" "heller@192.168.5.206" "-setcookie" "gs" "-config" "/root/gsapp/config/gs"))
                                     )
                 )
-      (setq erlang-compile-extra-opts '(debug_info  (i . \"../../../include\") (i . \"../../include\") (i . \"../include\")))
+      (setq erlang-compile-extra-opts '(debug_info nowarn_export_all  (i . \"../../../include\") (i . \"../../include\") (i . \"../include\")))
       :config
       (add-hook 'erlang-mode-hook 'hs-minor-mode)
       (require 'erlang-start))

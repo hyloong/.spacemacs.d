@@ -36,6 +36,9 @@
      erlang
      semantic
      windows-scripts
+     (csharp :variables
+             omnisharp--curl-executable-path "/usr/bin/curl"
+             omnisharp-server-executable-path "/root/download/omnisharp-server")
      heller
      )
    ;; 其他额外的包安装，在 `dotspacemacs/user-config' 配置
@@ -237,6 +240,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-hungry-delete-mode 1)
   (setq hs-allow-nesting t)
   (setq spacemacs-show-trailing-whitespace nil)
+  
   ;; (setq org-bullets-bullet-list '("◉" "○" "✸" "✿"))
   ;; (with-eval-after-load 'org-agenda
   ;;   (setq-default org-agenda-files (list org-directory))    
