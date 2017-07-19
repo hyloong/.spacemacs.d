@@ -11,6 +11,7 @@
    ;; layers 安装列表:('all):全部安装;
    dotspacemacs-configuration-layers
    '(
+     nginx
      javascript
      ;; emacs
      (auto-completion :variables
@@ -36,9 +37,7 @@
      erlang
      semantic
      windows-scripts
-     (csharp :variables
-             omnisharp--curl-executable-path "/usr/bin/curl"
-             omnisharp-server-executable-path "/root/download/omnisharp-server")
+     csharp
      heller
      )
    ;; 其他额外的包安装，在 `dotspacemacs/user-config' 配置
@@ -260,6 +259,9 @@ before packages are loaded. If you are unsure, you should try in setting them in
   ;;             (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
   ;;             ))))
   ;;   )
+  :variables
+  (setq-default omnisharp--curl-executable-path "/usr/bin/curl")
+  (setq-default omnisharp-server-executable-path "/opt/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe")
   )
 
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
