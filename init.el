@@ -239,27 +239,6 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (global-hungry-delete-mode 1)
   (setq hs-allow-nesting t)
   (setq spacemacs-show-trailing-whitespace nil)
-  
-  ;; (setq org-bullets-bullet-list '("◉" "○" "✸" "✿"))
-  ;; (with-eval-after-load 'org-agenda
-  ;;   (setq-default org-agenda-files (list org-directory))    
-  ;;   (setq org-agenda-custom-commands
-  ;;         '(
-  ;;           ("w" . "任务安排")
-  ;;           ("tt" "测试任务" tags-todo "aa")
-  ;;           ("wa" "重要且紧急的任务" tags-todo "+PRIORITY=\"A\"")
-  ;;           ("wb" "重要且不紧急的任务" tags-todo "-Weekly-Monthly-Daily+PRIORITY=\"B\"")
-  ;;           ("wc" "不重要且紧急的任务" tags-todo "+PRIORITY=\"C\"")
-  ;;           ("b" "Blog" tags-todo "BLOG")
-  ;;           ("p" . "项目安排")
-  ;;           ("pw" tags-todo "PROJECT+WORK+CATEGORY=\"erlang\"")
-  ;;           ("pl" tags-todo "PROJECT+DREAM+CATEGORY=\"heller\"")
-  ;;           ("W" "Weekly Review"
-  ;;            ((stuck "") ;; review stuck projects as designated by org-stuck-projects
-  ;;             (tags-todo "PROJECT") ;; review all projects (assuming you use todo keywords to designate projects)
-  ;;             ))))
-  ;;   )
-  :variables
   (setq-default omnisharp--curl-executable-path "/usr/bin/curl")
   (setq-default omnisharp-server-executable-path "/opt/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe")
   )
