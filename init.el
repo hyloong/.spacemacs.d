@@ -5,39 +5,46 @@
 (defun dotspacemacs/layers ()
   (setq-default
    ;; 标准模式'spacemacs; or 最小模式'spacemacs-base
-   dotspacemacs-distribution 'spacemacs 
+   dotspacemacs-distribution 'spacemacs
    ;; 其他额外添加的layers的路径，必须要/结尾
    dotspacemacs-configuration-layer-path '()
    ;; layers 安装列表:('all):全部安装;
    dotspacemacs-configuration-layers
    '(
-     nginx
-     javascript
-     ;; emacs
+     clojure
      (auto-completion :variables
                       auto-completion-enable-sort-by-usage t
                       auto-completion-enable-snippets-in-popup t)
      org
-     emacs-lisp
      markdown
+     emacs-lisp
      syntax-checking
+     (gtags :disabled-for clojure emacs-lisp latex)
      (better-defaults :variables
                       better-defaults-move-to-end-of-code-first t)
+     ;; web
+     php
+     html
+     nginx
+     javascript
 
-     ;; progrom
+     ;;
+     sql
+     lua
+     csharp
+     windows-scripts
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
-     (gtags :disabled-for clojure emacs-lisp javascript latex python shell-scripts)
-     php
-     sql
-     lua
-     html
-     python
-     erlang
+
+     (python :variables
+             python-test-runner '(pytest nose)
+             python-enable-yapf-format-on-save t
+             python-fill-column 99
+             python-sort-imports-on-save t)
+
      semantic
-     windows-scripts
-     csharp
+     erlang
      heller
      )
    ;; 其他额外的包安装，在 `dotspacemacs/user-config' 配置
@@ -62,7 +69,7 @@
    dotspacemacs-startup-lists '(recents projects)
    dotspacemacs-startup-recent-list-size 5
    ;; Default major mode of the scratch buffer (default `text-mode')
-   dotspacemacs-scratch-mode 'text-mode 
+   dotspacemacs-scratch-mode 'text-mode
    dotspacemacs-themes '(spacemacs-dark) ;; themes
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -204,6 +211,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
+
   (setq configuration-layer--elpa-archives
         '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
           ("org-cn"   . "http://elpa.zilongshanren.com/org/")
@@ -218,12 +226,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (setq default-directory "/media/sf_erl_work")
     )
   (setq projectile-enable-caching t)
-  (setq-default cursor-type 'bar) 
+  (setq-default cursor-type 'bar)
   (delete-selection-mode t)
   (setq-default indent-tabs-mode nil)
+
   ;; control length used to offset.
   (setq-default c-basic-offset 4)
   (setq-default tab-width 4)
+
   ;; (setq show-trailing-whitespace nil)
   ;; Bind clang-format-region to C-M-tab in all modes:
   (global-set-key [C-M-tab] 'clang-format-region)
@@ -232,12 +242,14 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (defun clang-format-bindings ()
     (define-key c++-mode-map [tab] 'clang-format-buffer))
   (setq flycheck-clang-include-path '("/usr/lib/include"))
+
   (global-company-mode)
+
   (with-eval-after-load 'dired
     (define-key dired-mode-map (kbd "RET") 'dired-find-alternate-file))
   (setq-default abbrev-mode 1)
   (global-hungry-delete-mode 1)
-  (setq hs-allow-nesting t)
+  ;; (setq hs-allow-nesting t)
   (setq spacemacs-show-trailing-whitespace nil)
   (setq-default omnisharp--curl-executable-path "/usr/bin/curl")
   (setq-default omnisharp-server-executable-path "/opt/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe")
@@ -251,6 +263,3 @@ This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
   )
-
-
-

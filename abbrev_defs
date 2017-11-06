@@ -6,20 +6,20 @@
 (define-abbrev-table 'Info-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'awk-mode-abbrev-table
-  '(
-   ))
+'(
+))
 
 (define-abbrev-table 'bookmark-bmenu-mode-abbrev-table '())
 
 (define-abbrev-table 'bookmark-edit-annotation-mode-abbrev-table '())
 
 (define-abbrev-table 'c++-mode-abbrev-table
-  '(
-   ))
+'(
+))
 
 (define-abbrev-table 'c-mode-abbrev-table
-  '(
-   ))
+'(
+))
 
 (define-abbrev-table 'calendar-mode-abbrev-table '())
 
@@ -42,14 +42,15 @@
 (define-abbrev-table 'emacs-lisp-mode-abbrev-table '())
 
 (define-abbrev-table 'erlang-mode-abbrev-table
-  '(
-    ("?md" "?MODULE" nil 0)
-    ("?li" "?LINE" nil 0)
-    ("gscc" "gen_server:call(misc:get_globle_pid(?MODULE), {Msg, Args})." nil 0)
-    ("gscs" "gen_server:cast(misc:get_globle_pid(?MODULE), {Msg, Args})." nil 0)
-    ("imf" "io:format(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []])," nil 2)
-    ("utmf" "util:errlog(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []])," nil 0)
-   ))
+'(
+("\?md" "?MODULE" nil 0)
+("\?li" "?LINE" nil 0)
+("fgxp" "%% ================================= private fun =================================" nil 0)
+("gscc" "gen_server:call(misc:get_globle_pid(?MODULE), {Msg, Args})." nil 0)
+("gscs" "gen_server:cast(misc:get_globle_pid(?MODULE), {Msg, Args})." nil 0)
+("imf" "io:format(\"~p ~p Args:~w~n\", [?MODULE, ?LINE, []])," nil 2)
+("utmf" "util:errlog(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []])," nil 0)
+))
 
 (define-abbrev-table 'evil-command-window-mode-abbrev-table '())
 
@@ -84,16 +85,16 @@
 (define-abbrev-table 'image-dired-thumbnail-mode-abbrev-table '())
 
 (define-abbrev-table 'java-mode-abbrev-table
-  '(
-   ))
+'(
+))
 
 (define-abbrev-table 'lisp-mode-abbrev-table '())
 
 (define-abbrev-table 'messages-buffer-mode-abbrev-table '())
 
 (define-abbrev-table 'objc-mode-abbrev-table
-  '(
-   ))
+'(
+))
 
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
@@ -106,8 +107,8 @@
 (define-abbrev-table 'package-menu-mode-abbrev-table '())
 
 (define-abbrev-table 'pike-mode-abbrev-table
-  '(
-   ))
+'(
+))
 
 (define-abbrev-table 'process-menu-mode-abbrev-table '())
 
