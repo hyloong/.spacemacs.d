@@ -27,6 +27,11 @@
 
 (define-abbrev-table 'completion-list-mode-abbrev-table '())
 
+(define-abbrev-table 'csharp-mode-abbrev-table
+'(
+("xyt" "############### xyt ###############" nil 0)
+))
+
 (define-abbrev-table 'data-debug-mode-abbrev-table '())
 
 (define-abbrev-table 'diff-mode-abbrev-table '())
@@ -43,13 +48,46 @@
 
 (define-abbrev-table 'erlang-mode-abbrev-table
 '(
-("\?md" "?MODULE" nil 0)
-("\?li" "?LINE" nil 0)
+("?li" "?LINE" nil 0)
+("?md" "?MODULE" nil 0)
 ("fgxp" "%% ================================= private fun =================================" nil 0)
 ("gscc" "gen_server:call(misc:get_globle_pid(?MODULE), {Msg, Args})." nil 0)
 ("gscs" "gen_server:cast(misc:get_globle_pid(?MODULE), {Msg, Args})." nil 0)
-("imf" "io:format(\"~p ~p Args:~w~n\", [?MODULE, ?LINE, []])," nil 2)
-("utmf" "util:errlog(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []])," nil 0)
+("imf" "io:format(\"~p ~p Args:~p~n\", [?MODULE, ?LINE, []])," nil 2)
+("emf" "?ERR(\"Args:~p~n\", [[]])," nil 0)
+
+("dohcall" "handle_call(Req, From, State) ->
+                case catch do_handle_call(Req, From, State) of
+                     {reply, Res, State};
+                          {reply, Res, State};
+                    Res ->
+                         ?ERR(\"Req Error:~p~n\", [[Msg, Res]]),
+                         {reply, ok, State};
+                end.
+            do_handle_call(_Req, _From, State) ->
+                 {reply, ok, State}." nil 0)
+
+("dohcast" "handle_cast(Msg, State) ->
+                case catch do_handle_cast(Msg, State) of
+                    {noreply, NewState} ->
+                         {noreply, NewState};
+                    Res ->
+                         ?ERR(\"Msg Error:~p~n\", [[Msg, Res]]),
+                         {noreply, State};
+                end.
+            do_handle_cast(_Msg, State) ->
+                 {noreply, State}." nil 0)
+
+("dohinfo" "handle_info(Info, State) ->
+                case catch do_handle_info(Info, State) of
+                     {noreply, NewState} ->
+                          {noreply, NewState};
+                    Res ->
+                          ?ERR(\"Info Error:~p~n\", [[Info, Res]]),
+                          {noreply, State}
+                end.
+            do_handle_info(_Info, State) ->
+                 {noreply, State}." nil 0)
 ))
 
 (define-abbrev-table 'evil-command-window-mode-abbrev-table '())
@@ -64,7 +102,10 @@
 
 (define-abbrev-table 'ggtags-view-search-history-mode-abbrev-table '())
 
-(define-abbrev-table 'global-abbrev-table '())
+(define-abbrev-table 'global-abbrev-table
+'(
+("xyt" "xyt ###############" nil 2)
+))
 
 (define-abbrev-table 'grep-mode-abbrev-table '())
 
